@@ -34,7 +34,8 @@ jobs:
     - name: Step One - checkout files in repo
       uses: actions/checkout@master
 
-    # Get credentials (the kubeconfig file) the k8 cluster. Copies kubeconfig into /github/workspace/.kube/config
+    # Get credentials (the kubeconfig file) the k8 cluster. Copies kubeconfig into 
+    # /github/workspace/.kube/config
     - name: Step Two - Get kubeconfig file from GKE
       uses: machine-learning-apps/gke-kubeconfig@master
       with:
@@ -54,10 +55,12 @@ jobs:
         workflow_yaml_path: "examples/coinflip.yaml"
         parameter_file_path: "examples/arguments-parameters.yaml"
       env:
-        # KUBECONFIG tells kubectl where it can find your authentication information.  A config file was saved to this path in Step Two.
+        # KUBECONFIG tells kubectl where it can find your authentication information.  
+        #  A config file was saved to this path in Step Two.
         KUBECONFIG: '/github/workspace/.kube/config'
 
-      # This step displays the Argo URL, and illustrates how you can use the output of the previous Action.
+      # This step displays the Argo URL, and illustrates how you can use the 
+      # output of the previous Action.
     - name: test argo outputs
       run: echo "Argo URL $WORKFLOW_URL"
       env:
